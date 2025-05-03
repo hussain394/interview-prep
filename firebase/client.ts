@@ -35,3 +35,17 @@ if (typeof window !== "undefined") {
 }
 
 export { app, analytics };
+  // Import Firebase auth
+
+// Logout function
+export const logout = async () => {
+  try {
+    // Sign out the user using Firebase Auth
+    await auth.signOut();
+    console.log("User has been logged out successfully.");
+    // You can redirect the user to the login page (or sign-up) after logging out
+    window.location.href = "/sign-up";  // Or use Next.js routing: useRouter().push("/sign-up");
+  } catch (error) {
+    console.error("Error logging out:", error);
+  }
+};

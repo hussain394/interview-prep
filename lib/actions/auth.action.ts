@@ -90,7 +90,7 @@ export async function signIn(params: SignInParams) {
 }
 
 // Sign out user by clearing the session cookie
-export async function signOut() {
+export async function serverSignOut() {
   const cookieStore = await cookies();
 
   cookieStore.delete("session");
@@ -130,3 +130,11 @@ export async function isAuthenticated() {
   const user = await getCurrentUser();
   return !!user;
 }
+
+
+import { signOut } from "next-auth/react";
+
+export const logout = async () => {
+  await signOut({ callbackUrl: "http://localhost:3000/sign-up" });
+ // Redirect to homepage after logout
+};
